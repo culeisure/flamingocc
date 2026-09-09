@@ -32,7 +32,7 @@
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="style.css?v=11" />
+  <link rel="stylesheet" href="style.css?v=13" />
 </head>
 <body>
 
@@ -43,29 +43,27 @@
   <div class="shell">
 
     <!-- ===== 히어로 ===== -->
-    <section class="lock lock--c" id="lock" aria-label="플라밍고CC 이용권 안내">
-      <picture class="lock__bg" aria-hidden="true">
-        <source media="(max-aspect-ratio: 3/4)" srcset="img/hero-m.webp" />
-        <img src="img/hero.webp" alt="" />
-      </picture>
-      <div class="lock__veil" aria-hidden="true"></div>
-      <div class="lock__top">
-        <img class="lock__brand" src="img/logo-white.png" alt="Flamingo Country Club" />
+    <section class="lock lock--e" id="lock" aria-label="플라밍고CC 이용권 안내">
+      <div class="e__photo">
+        <picture>
+          <source media="(max-aspect-ratio: 3/4)" srcset="img/hero-m.webp" />
+          <img src="img/hero.webp" alt="서해와 맞닿은 플라밍고CC 링크스 코스" />
+        </picture>
+        <img class="e__logo" src="img/logo-white.png" alt="Flamingo Country Club" />
+        <p class="e__cap">매트 없는 천연잔디 36홀, 서해 링크스</p>
       </div>
-      <div class="lock__body">
-        <p class="c__eyebrow">친구들과 매달 치는 골프, 그린피가 부담이셨다면</p>
-        <h1 class="c__title">4명이 함께 쳐도<br />그린피는 전원 반값</h1>
-        <p class="c__pain">당진 플라밍고CC 골프 이용권<br />4,400만원부터</p>
-        <p class="c__sub">매트 없는 천연잔디 36홀 · 서해 링크스 · 당진IC 15분</p>
-        <ul class="c__chips">
+      <div class="e__panel">
+        <p class="e__eyebrow">Flamingo Country Club<i></i>Dangjin</p>
+        <h1 class="e__title">네 명이 치면,<br />네 명 다 <em>반값.</em></h1>
+        <p class="e__sub">당진 플라밍고CC 골프 이용권 <b>4,400만원부터</b></p>
+        <ul class="e__facts">
           <li>기명 2명 + 동반 3명</li>
-          <li>월 4~6회 라운드</li>
           <li>10년 만기</li>
           <li>명의변경 가능</li>
         </ul>
-        <div class="lock__cta">
+        <div class="e__cta">
           <a class="btn btn--main" href="tel:01040873443" data-track="cta_call" data-track-pos="hero">전화 상담</a>
-          <a class="btn btn--ghost" href="sms:01040873443?body=플라밍고CC 이용권 상담 요청드립니다." data-track="cta_sms" data-track-pos="hero">문자 상담</a>
+          <a class="btn btn--outline" href="sms:01040873443?body=플라밍고CC 이용권 상담 요청드립니다." data-track="cta_sms" data-track-pos="hero">문자 상담</a>
         </div>
       </div>
     </section>
@@ -347,6 +345,6 @@
   </div>
 
   <div class="progress" id="progress" aria-hidden="true"></div>
-  <script src="script.js?v=5"></script>
+  <script src="script.js?v=6"></script>
 </body>
 </html>

@@ -1302,3 +1302,69 @@ body { background: var(--cream); }
 .save__v s { opacity: 0.75; margin-right: 8px; }
 .save__v b { font-size: 30px; font-weight: 800; letter-spacing: -0.03em; }
 .save__d { margin-top: 6px; font-size: 13px; font-weight: 600; }
+
+/* =========================================================
+   v10 히어로: 에디토리얼 분할 (사진 / 흰 패널 · 명조 한 문장)
+   ========================================================= */
+.lock--e { min-height: 100svh; display: flex; flex-direction: column; background: #fff; color: var(--ink); }
+.e__photo { position: relative; flex: 0 0 56svh; min-height: 380px; overflow: hidden; background: #cfe6f7; }
+.e__photo picture, .e__photo picture img { display: block; width: 100%; height: 100%; }
+.e__photo picture img { object-fit: cover; object-position: center 45%; animation: heroZoom 16s ease-out both; }
+.e__logo {
+  position: absolute; top: max(20px, env(safe-area-inset-top)); left: 50%; transform: translateX(-50%);
+  width: 96px; opacity: 0.96;
+  filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.25));
+}
+.e__cap {
+  position: absolute; left: 22px; right: 22px; bottom: 18px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+  color: #fff;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+}
+.e__cap::before { content: ""; display: inline-block; width: 18px; height: 1px; background: #fff; vertical-align: middle; margin-right: 8px; opacity: 0.8; }
+.e__panel {
+  flex: 1;
+  padding: 30px 24px calc(96px + env(safe-area-inset-bottom));
+  display: flex; flex-direction: column; justify-content: center;
+}
+.e__eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--flam);
+  margin-bottom: 14px;
+  animation: fadeUp 0.9s 0.15s ease both;
+}
+.e__eyebrow i { width: 3px; height: 3px; border-radius: 50%; background: var(--flam); }
+.e__title {
+  font-family: var(--serif);
+  font-size: clamp(34px, 10vw, 46px); font-weight: 600;
+  line-height: 1.28; letter-spacing: -0.02em;
+  color: var(--ink);
+  animation: fadeUp 0.9s 0.3s ease both;
+}
+.e__title em {
+  font-style: normal; color: var(--flam);
+  background: linear-gradient(transparent 68%, var(--flam-3) 68%);
+}
+.e__sub {
+  margin-top: 14px;
+  font-size: 15px; color: var(--ink-soft);
+  animation: fadeUp 0.9s 0.45s ease both;
+}
+.e__sub b { color: var(--ink); font-weight: 700; }
+.e__facts {
+  display: flex; flex-wrap: wrap;
+  margin: 18px 0 22px;
+  animation: fadeUp 0.9s 0.55s ease both;
+}
+.e__facts li { font-size: 13px; font-weight: 600; color: var(--ink); }
+.e__facts li + li::before { content: ""; display: inline-block; width: 1px; height: 11px; background: var(--line); margin: 0 12px; vertical-align: -1px; }
+.e__cta { display: flex; gap: 10px; animation: fadeUp 0.9s 0.65s ease both; }
+.e__cta .btn { flex: 1; border-radius: 12px; padding: 15px 12px; font-size: 15px; box-shadow: none; }
+.e__cta .btn--main { background: var(--flam); }
+.btn--outline { border: 1.5px solid var(--ink); color: var(--ink); background: #fff; }
+
+/* 고정바: 히어로를 지난 뒤에만 표시 */
+.bar { transform: translate(-50%, 120%); transition: transform 0.35s ease; }
+.bar.is-on { transform: translate(-50%, 0); }
+.e__panel { padding-bottom: 34px; }
