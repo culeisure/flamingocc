@@ -1410,3 +1410,10 @@ body { background: var(--cream); }
 .head.is-stuck { visibility: visible; }
 
 .who__tag { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: 0.06em; color: var(--flam); border: 1px solid var(--flam-2); border-radius: 4px; padding: 2px 7px; margin-bottom: 8px; }
+
+/* v13: 히어로 캡션 (소유감) */
+.e__cap { font-family: var(--serif); font-size: 17px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.35; bottom: 22px; }
+.e__cap::before { display: none; }
+.e__cap small { display: block; font-family: var(--sans); font-size: 11.5px; font-weight: 600; letter-spacing: 0.06em; opacity: 0.85; margin-bottom: 5px; }
+.e__photo::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 46%; background: linear-gradient(180deg, transparent, rgba(8, 20, 30, 0.55)); pointer-events: none; }
+.e__cap { z-index: 2; }
