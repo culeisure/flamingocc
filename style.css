@@ -1368,3 +1368,43 @@ body { background: var(--cream); }
 .bar { transform: translate(-50%, 120%); transition: transform 0.35s ease; }
 .bar.is-on { transform: translate(-50%, 0); }
 .e__panel { padding-bottom: 34px; }
+
+/* =========================================================
+   v11: 히어로 문구 위계 · 그린피 1인/4인 격자 · 이런 분께 밝은 카드
+   ========================================================= */
+.e__title { font-size: clamp(32px, 9.4vw, 44px); }
+.e__tag {
+  margin-top: 14px;
+  font-family: var(--serif);
+  font-size: clamp(17px, 5vw, 21px); font-weight: 600;
+  line-height: 1.45; letter-spacing: -0.01em;
+  color: var(--ink);
+  animation: fadeUp 0.9s 0.4s ease both;
+}
+.e__tag em { font-style: normal; color: var(--flam); }
+.e__sub { margin-top: 8px; font-size: 15px; color: var(--ink-soft); }
+.e__sub b { font-size: 22px; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; margin-right: 2px; }
+
+.grid { background: #fff; border: 1px solid var(--gold); border-radius: 14px; overflow: hidden; }
+.grid__head, .grid__row { display: grid; grid-template-columns: 56px 1fr 1.2fr; align-items: center; }
+.grid__head { padding: 10px 14px; background: #f3f7fa; font-size: 11.5px; font-weight: 700; letter-spacing: 0.06em; color: var(--ink-soft); text-align: center; }
+.grid__head span:last-child { color: var(--flam); }
+.grid__row { padding: 14px; border-top: 1px solid var(--line); }
+.grid__k { font-size: 14px; font-weight: 700; color: var(--ink); }
+.grid__c { text-align: center; }
+.grid__c s { display: block; font-size: 12.5px; color: var(--ink-soft); }
+.grid__c b { display: block; margin-top: 2px; font-size: 22px; font-weight: 800; letter-spacing: -0.03em; color: var(--ink); line-height: 1.15; }
+.grid__c b small { font-size: 12px; font-weight: 700; margin-left: 1px; }
+.grid__c--hl b { color: var(--flam); font-size: 25px; }
+.save__v b { font-size: 34px; }
+
+.block--who { background: #fff; }
+.block--who .sec-label { color: var(--flam); }
+.block--who .who { border-top: 0; display: grid; gap: 10px; }
+.block--who .who li { border: 1px solid var(--gold); border-radius: 14px; padding: 16px 18px; background: #fff; }
+.block--who .who b { color: var(--ink); font-size: 15.5px; }
+.block--who .who p { color: var(--ink-soft); }
+
+/* v12: 숨김 헤더가 히어로 하단에 비치지 않게 */
+.head:not(.is-stuck) { visibility: hidden; }
+.head.is-stuck { visibility: visible; }
