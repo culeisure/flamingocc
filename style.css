@@ -1417,3 +1417,20 @@ body { background: var(--cream); }
 .e__cap small { display: block; font-family: var(--sans); font-size: 11.5px; font-weight: 600; letter-spacing: 0.06em; opacity: 0.85; margin-bottom: 5px; }
 .e__photo::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 46%; background: linear-gradient(180deg, transparent, rgba(8, 20, 30, 0.55)); pointer-events: none; }
 .e__cap { z-index: 2; }
+
+/* v15: 이용 구성 예시 펼침 */
+.product-cards .card__rows li.row-x { align-items: start; }
+.x summary { list-style: none; cursor: pointer; position: relative; padding-right: 22px; }
+.x summary::-webkit-details-marker { display: none; }
+.x summary::after { content: ""; position: absolute; right: 6px; top: 9px; width: 7px; height: 7px; border-right: 1.5px solid var(--flam); border-bottom: 1.5px solid var(--flam); transform: rotate(45deg); transition: transform 0.2s ease; }
+.x[open] summary::after { transform: rotate(-135deg); top: 12px; }
+.x summary small { color: var(--flam); }
+.x__body { margin-top: 10px; padding: 12px; background: #fdf3f7; border-radius: 10px; }
+.x__t { font-size: 12px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.x__opts { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.x__opts li { font-size: 12px; font-weight: 600; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; }
+.x__ex li { display: flex; align-items: center; gap: 4px; margin-bottom: 6px; flex-wrap: wrap; }
+.x__ex b { font-size: 12px; font-weight: 700; color: #fff; background: var(--flam); border-radius: 6px; padding: 3px 8px; }
+.x__ex i { font-style: normal; font-size: 12px; color: var(--ink-soft); margin: 0 2px; }
+.x__ex span { font-size: 11.5px; font-weight: 600; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 3px 8px; }
+.x__n { margin-top: 4px; font-size: 11.5px; color: var(--ink-soft); line-height: 1.6; }
