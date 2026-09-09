@@ -1457,3 +1457,7 @@ body { background: var(--cream); }
 .ladder__last { border-bottom: 0 !important; }
 .ladder__last span { font-weight: 800 !important; opacity: 1 !important; }
 .ladder__last b { font-size: 30px !important; }
+
+/* v17: 한정 구좌 */
+.e__limit { display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 700; color: var(--flam); margin: -6px 0 14px; animation: fadeUp 0.9s 0.6s ease both; }
+.e__limit i { width: 7px; height: 7px; border-radius: 50%; background: var(--flam); box-shadow: 0 0 0 3px var(--flam-3); }
