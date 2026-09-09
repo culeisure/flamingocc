@@ -888,3 +888,172 @@ ul { list-style: none; }
 .who b { display: block; font-size: 15.5px; font-weight: 700; color: #fff; }
 .who p { margin-top: 5px; font-size: 13px; line-height: 1.65; color: rgba(237, 241, 234, 0.82); }
 .full--tall img { min-height: 320px; }
+
+/* ---------- 히어로 A: 카드뉴스형 ---------- */
+.lock--a .lock__body { text-align: center; padding-bottom: 20px; }
+.lock--a .lock__veil {
+  background: linear-gradient(180deg, rgba(17, 36, 29, 0.55) 0%, rgba(17, 36, 29, 0.25) 35%, rgba(17, 36, 29, 0.7) 65%, rgba(17, 36, 29, 0.95) 100%);
+}
+.lock__big {
+  font-family: var(--serif);
+  font-size: clamp(40px, 11.5vw, 54px); font-weight: 700;
+  line-height: 1.15; letter-spacing: -0.02em;
+  color: #fff;
+  animation: fadeUp 0.9s 0.3s ease both;
+}
+.lock__sub2 {
+  margin-top: 8px;
+  font-size: 15px; font-weight: 600; letter-spacing: 0.04em;
+  color: var(--flam-2);
+  animation: fadeUp 0.9s 0.45s ease both;
+}
+.lock__row {
+  display: flex; align-items: center; gap: 16px;
+  margin: 24px auto 0;
+  max-width: 360px;
+  text-align: left;
+  animation: fadeUp 0.9s 0.6s ease both;
+}
+.badge--sm { width: 132px; height: 132px; flex: none; animation: none; }
+.badge--sm .badge__top, .badge--sm .badge__bot { font-size: 12px; }
+.badge--sm .badge__num { font-size: 48px; }
+.badge--sm .badge__num small { font-size: 20px; }
+.lock__list { flex: 1; }
+.lock__list li {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  font-size: 16px; font-weight: 700; color: #fff;
+  line-height: 1.3;
+}
+.lock__list li:last-child { border-bottom: 0; }
+.lock__list b {
+  display: inline-block;
+  font-family: var(--serif); font-size: 12px; font-weight: 700;
+  color: var(--pine); background: #fff;
+  border-radius: 6px; padding: 1px 6px; margin-right: 6px;
+  vertical-align: 2px; min-width: 30px; text-align: center;
+}
+.lock__list small { display: block; font-size: 12px; font-weight: 500; color: rgba(255, 255, 255, 0.78); margin-top: 1px; }
+.lock--a .lock__cta { max-width: 360px; margin: 22px auto 0; }
+
+/* ---------- 히어로 B: 분할형 ---------- */
+.lock--b { min-height: 100svh; background: var(--pine); display: flex; flex-direction: column; }
+.split__photo { position: relative; flex: 0 0 46svh; overflow: hidden; }
+.split__photo img:first-child { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; animation: heroZoom 14s ease-out both; }
+.lock__brand--float {
+  position: absolute; top: max(18px, env(safe-area-inset-top)); left: 50%; transform: translateX(-50%);
+  width: 108px; padding: 6px 10px; background: rgba(252, 251, 247, 0.92); border-radius: 8px;
+}
+.split__cap {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 60px 24px 22px;
+  background: linear-gradient(180deg, transparent, rgba(23, 72, 58, 0.95));
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px; font-weight: 600; letter-spacing: 0.04em;
+  text-align: center;
+}
+.split__panel {
+  position: relative; flex: 1;
+  padding: 0 26px calc(96px + env(safe-area-inset-bottom));
+  text-align: center;
+  color: #fff;
+}
+.badge--float { margin: -58px auto 14px; box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35), 0 0 0 6px var(--pine); }
+.split__panel .lock__title { font-size: clamp(22px, 6.2vw, 30px); line-height: 1.4; }
+.split__panel .lock__title em { color: var(--flam-2); }
+.split__note { margin-top: 8px; font-size: 13px; color: rgba(255, 255, 255, 0.72); }
+.split__panel .lock__cta { max-width: 340px; margin: 20px auto 0; }
+.card__price small { display: block; font-size: 11px; font-weight: 600; color: var(--ink-soft); letter-spacing: 0.04em; margin-bottom: 1px; text-align: right; }
+
+/* =========================================================
+   v6 톤 전환: 플라밍고 공식 카드뉴스 톤 (하늘색 · 핑크 · 검정 · 금색 프레임)
+   ========================================================= */
+:root {
+  --cream: #eef6fc;
+  --paper: #ffffff;
+  --ink: #1c2226;
+  --ink-soft: #566169;
+  --pine: #1c2226;
+  --pine-2: #2a3238;
+  --pine-3: #3d474f;
+  --flam: #ec2f8c;
+  --flam-2: #f47ab3;
+  --flam-3: #fde3ef;
+  --sky: #cfe6f7;
+  --gold: #c9a85a;
+  --line: #d8e4ec;
+  --shadow: 0 10px 30px rgba(28, 34, 38, 0.08);
+}
+body { background: var(--cream); }
+.shell { background: linear-gradient(180deg, #e3f1fb 0%, var(--cream) 30%, #f7fbfe 100%); }
+.lock[hidden] { display: none !important; }
+
+/* 히어로: 위 하늘은 살리고 아래만 어둡게 */
+.lock--a .lock__veil {
+  background: linear-gradient(180deg, rgba(20, 40, 60, 0.10) 0%, rgba(20, 40, 60, 0.05) 30%, rgba(20, 40, 60, 0.55) 62%, rgba(15, 30, 45, 0.92) 100%);
+}
+.lock__brand { background: rgba(255, 255, 255, 0.94); }
+.lock__big { text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35); }
+.lock__sub2 { color: #fff; font-size: 14px; font-weight: 600; letter-spacing: 0; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45); }
+.lock__list b { color: var(--flam); }
+.lock__hint-line { background: linear-gradient(180deg, transparent, #fff); }
+
+/* 헤더 · 마퀴 */
+.head__bar { background: rgba(255, 255, 255, 0.94); }
+.head__tel { color: var(--flam); border-color: var(--flam-2); }
+.ticker { background: var(--flam); }
+.ticker__track span { color: #fff; font-weight: 600; }
+.ticker__track i { background: rgba(255, 255, 255, 0.7); }
+
+/* 섹션 제목: 핑크, 굵은 고딕 */
+.sec-label { color: var(--flam); }
+.block__title { font-family: var(--sans); font-weight: 800; color: var(--flam); letter-spacing: -0.02em; }
+.block__title::before { background: var(--gold); }
+.block__desc { color: var(--ink); }
+.block--dark .sec-label { color: var(--flam); }
+
+/* 카드류: 흰 바탕 + 금색 얇은 프레임 */
+.card, .fee, .feat, .courses, .contact, .fact {
+  border: 1px solid var(--gold);
+  box-shadow: 0 8px 26px rgba(28, 34, 38, 0.06);
+}
+.card { border-top-width: 1px; }
+.card--open { border-top-color: var(--gold); }
+.card__name { font-family: var(--sans); font-weight: 800; color: var(--ink); }
+.card__name span { color: var(--flam); }
+.card__tag { background: var(--ink); }
+.card--open .card__tag { background: var(--flam); }
+.card__price em { font-family: var(--sans); color: var(--ink); }
+.card__rows span { color: var(--ink-soft); }
+.card__rows b.hl { color: var(--flam); }
+.fee__head { background: var(--flam-3); color: var(--ink); }
+.fee__k { color: var(--ink); }
+.fee__now { font-family: var(--sans); font-weight: 800; }
+.fee__row--sum { background: var(--flam-3); }
+.feat b { color: var(--ink); }
+.courses__k { color: var(--ink); }
+.contact__name { font-family: var(--sans); font-weight: 800; color: var(--ink); }
+
+/* 이런 분께: 짙은 남색 대신 핑크 그라데이션 패널 */
+.block--dark { background: linear-gradient(160deg, #ec2f8c, #c2166b); color: #fff; }
+.block--dark .block__title { color: #fff; }
+.block--dark .block__title::before { background: rgba(255, 255, 255, 0.8); }
+.block--dark .block__desc { color: rgba(255, 255, 255, 0.85); }
+.who { border-top-color: rgba(255, 255, 255, 0.5); }
+.who li { border-bottom-color: rgba(255, 255, 255, 0.22); }
+.who p { color: rgba(255, 255, 255, 0.88); }
+
+/* FAQ · 푸터 */
+.block--stone { background: #fff; }
+.acc details:first-child { border-top-color: var(--gold); }
+.acc summary::after { border-color: var(--flam); }
+.foot { background: #e3f1fb; }
+.foot__disc li { color: var(--ink-soft); }
+
+/* 버튼 · 고정바 */
+.btn--main, .bar__btn--call { background: linear-gradient(135deg, #f0509d, var(--flam)); box-shadow: 0 8px 24px rgba(236, 47, 140, 0.35); }
+.bar__btn--sms { background: var(--ink); color: #fff; }
+.btn--line { border-color: var(--flam); color: var(--flam); }
+.progress { background: linear-gradient(90deg, var(--flam-2), var(--flam)); }
+.full__cap { background: linear-gradient(180deg, transparent, rgba(15, 30, 45, 0.78)); }
+.full__eyebrow { color: var(--flam-2); }
