@@ -89,4 +89,16 @@
       });
     });
   })();
+
+  /* 5) FAQ: 한 번에 하나만 열기 */
+  (function () {
+    document.querySelectorAll(".acc").forEach(function (acc) {
+      acc.querySelectorAll("details").forEach(function (d) {
+        d.addEventListener("toggle", function () {
+          if (!d.open) return;
+          acc.querySelectorAll("details[open]").forEach(function (o) { if (o !== d) o.open = false; });
+        });
+      });
+    });
+  })();
 })();

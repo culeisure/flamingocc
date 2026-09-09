@@ -99,16 +99,15 @@ ul { list-style: none; }
 }
 .lock__body {
   position: relative; z-index: 2;
-  padding: 0 26px 30px;
-  text-align: center;
+  padding: 0 26px calc(92px + env(safe-area-inset-bottom));
+  text-align: left;
   text-shadow: 0 1px 3px rgba(10, 20, 16, 0.55), 0 4px 22px rgba(10, 20, 16, 0.45);
 }
 .lock__eyebrow {
-  display: inline-flex; align-items: center; gap: 10px;
   font-size: 13px; font-weight: 600;
-  letter-spacing: 0.14em;
-  color: #f7d9e5;
-  margin-bottom: 18px;
+  letter-spacing: 0.02em;
+  color: var(--flam-2);
+  margin-bottom: 14px;
   animation: fadeUp 0.9s 0.2s ease both;
 }
 .lock__eyebrow i {
@@ -118,10 +117,11 @@ ul { list-style: none; }
 }
 .lock__title {
   font-family: var(--serif);
-  font-weight: 600;
-  font-size: clamp(30px, 8.6vw, 41px);
-  line-height: 1.3;
+  font-weight: 700;
+  font-size: clamp(28px, 7.8vw, 38px);
+  line-height: 1.32;
   letter-spacing: -0.01em;
+  animation: fadeUp 0.9s 0.5s ease both;
 }
 .lock__line { display: block; animation: fadeUp 0.9s ease both; }
 .lock__line--sm {
@@ -132,12 +132,11 @@ ul { list-style: none; }
 }
 .lock__line:nth-child(1) { animation-delay: 0.35s; }
 .lock__line:nth-child(2) { animation-delay: 0.55s; }
-.lock__title em { font-style: normal; color: #fff; }
+.lock__title em { font-style: normal; color: var(--flam-2); }
 .lock__sub {
-  margin-top: 18px;
-  font-size: 16px; font-weight: 500;
-  line-height: 1.7;
-  color: #fbf8f1;
+  margin-top: 12px;
+  font-size: 14.5px; font-weight: 500;
+  color: rgba(251, 248, 241, 0.88);
   animation: fadeUp 0.9s 0.75s ease both;
 }
 .lock__note {
@@ -594,4 +593,118 @@ ul { list-style: none; }
 @media (prefers-reduced-motion: reduce) {
   .lock__bg img, .lock__hint-line, .ticker__track { animation: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---------- 히어로 (카시아식 리드 · 칩 · CTA) ---------- */
+.lock__lead {
+  font-size: clamp(16px, 4.4vw, 19px); font-weight: 500;
+  line-height: 1.55;
+  color: rgba(251, 248, 241, 0.92);
+  margin-bottom: 10px;
+  animation: fadeUp 0.9s 0.35s ease both;
+}
+.lock__chips {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin: 18px 0 22px;
+  animation: fadeUp 0.9s 0.9s ease both;
+}
+.lock__chips li {
+  font-size: 12.5px; font-weight: 600;
+  padding: 7px 13px; border-radius: 999px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(4px);
+  text-shadow: none;
+}
+.lock__cta { display: flex; gap: 10px; animation: fadeUp 0.9s 1.05s ease both; }
+.lock__cta .btn { flex: 1; padding: 14px 12px; font-size: 14.5px; }
+
+/* ---------- 섹션 번호 ---------- */
+.sec-label {
+  display: block;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--flam);
+  margin-bottom: 4px;
+}
+.block--dark .sec-label { color: var(--flam-2); }
+
+/* ---------- 핵심 혜택 01~04 ---------- */
+.benefits { display: grid; gap: 12px; margin-top: 4px; }
+.benefits li {
+  display: flex; gap: 14px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px 18px 18px 16px;
+  box-shadow: var(--shadow);
+}
+.benefits__n {
+  flex: none;
+  font-family: var(--serif);
+  font-size: 15px; font-weight: 700;
+  color: var(--flam);
+  padding-top: 2px;
+  width: 24px;
+}
+.benefits__t { font-size: 16px; font-weight: 700; color: var(--pine); line-height: 1.4; }
+.benefits__d { margin-top: 6px; font-size: 13.5px; line-height: 1.65; color: var(--ink-soft); }
+
+/* ---------- FAQ ---------- */
+.block--stone { background: #ede8dc; }
+.acc details { border-bottom: 1px solid var(--line); }
+.acc details:first-child { border-top: 1px solid var(--flam); }
+.acc summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 15px 30px 15px 2px;
+  font-size: 14.5px; font-weight: 600;
+  color: var(--ink);
+  position: relative;
+}
+.acc summary::-webkit-details-marker { display: none; }
+.acc summary::after {
+  content: "";
+  position: absolute; right: 8px; top: 50%;
+  width: 8px; height: 8px;
+  border-right: 1.5px solid var(--flam); border-bottom: 1.5px solid var(--flam);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform 0.25s ease;
+}
+.acc details[open] summary::after { transform: translateY(-30%) rotate(-135deg); }
+.acc__body { padding: 0 2px 16px; }
+.acc__body p { font-size: 13.5px; line-height: 1.7; color: var(--ink-soft); }
+
+/* ---------- 상담 카드 ---------- */
+.contact {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--flam);
+  border-radius: 14px;
+  padding: 26px 20px 22px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.contact__label { font-size: 12px; letter-spacing: 0.06em; color: var(--flam); font-weight: 600; }
+.contact__name { font-family: var(--serif); font-size: 26px; font-weight: 700; color: var(--pine); margin-top: 6px; }
+.contact__name small { font-family: var(--sans); font-size: 14px; font-weight: 600; color: var(--ink-soft); margin-left: 2px; }
+.contact__phone { font-size: 22px; font-weight: 700; color: var(--ink); letter-spacing: 0.02em; margin: 2px 0 18px; }
+.contact .cta-btns { flex-direction: row; max-width: none; }
+.contact .btn { flex: 1; padding: 14px 12px; font-size: 14.5px; }
+.btn--line { border: 1px solid var(--flam); color: var(--flam); background: #fff; }
+
+/* ---------- 푸터 고지 ---------- */
+.foot__disc { text-align: left; margin-top: 4px; }
+.foot__disc li {
+  position: relative;
+  padding-left: 10px;
+  font-size: 11px; line-height: 1.65;
+  color: var(--ink-soft);
+  margin-top: 5px;
+}
+.foot__disc li::before {
+  content: ""; position: absolute; left: 0; top: 0.72em;
+  width: 3px; height: 3px; border-radius: 50%;
+  background: var(--ink-soft);
 }
