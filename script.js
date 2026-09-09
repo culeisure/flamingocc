@@ -101,4 +101,71 @@
       });
     });
   })();
+
+  /* 6) 사진 라이트박스: 카드 · 갤러리 · 풀폭 사진 클릭 시 확대 */
+  (function () {
+    var imgs = Array.prototype.slice.call(document.querySelectorAll(".feat img, .gal img, .full img"));
+    if (!imgs.length) return;
+    var lb = document.createElement("div");
+    lb.className = "lb";
+    lb.setAttribute("role", "dialog");
+    lb.setAttribute("aria-label", "사진 크게 보기");
+    lb.innerHTML = '<button class="lb__x" type="button" aria-label="닫기">&times;</button>' +
+      '<button class="lb__nav lb__prev" type="button" aria-label="이전">&#8249;</button>' +
+      '<button class="lb__nav lb__next" type="button" aria-label="다음">&#8250;</button>' +
+      '<figure class="lb__fig"><img alt="" /><figcaption></figcaption></figure>' +
+      '<p class="lb__count"></p>';
+    document.body.appendChild(lb);
+    var lbImg = lb.querySelector("img");
+    var lbCap = lb.querySelector("figcaption");
+    var lbCount = lb.querySelector(".lb__count");
+    var idx = 0;
+
+    function caption(img) {
+      var fig = img.closest("figure");
+      var fc = fig && fig.querySelector("figcaption");
+      if (fc && !fc.classList.contains("full__cap")) return fc.textContent.trim();
+      var feat = img.closest(".feat");
+      if (feat) { var b = feat.querySelector("b"); if (b) return b.textContent.trim(); }
+      return img.alt || "";
+    }
+    function show(i) {
+      idx = (i + imgs.length) % imgs.length;
+      var img = imgs[idx];
+      lbImg.src = img.currentSrc || img.src;
+      lbImg.alt = img.alt || "";
+      lbCap.textContent = caption(img);
+      lbCount.textContent = (idx + 1) + " / " + imgs.length;
+    }
+    function open(i) {
+      show(i);
+      lb.classList.add("is-on");
+      document.documentElement.style.overflow = "hidden";
+    }
+    function close() {
+      lb.classList.remove("is-on");
+      document.documentElement.style.overflow = "";
+    }
+    imgs.forEach(function (img, i) {
+      img.classList.add("zoomable");
+      img.addEventListener("click", function () { open(i); });
+    });
+    lb.querySelector(".lb__x").addEventListener("click", close);
+    lb.querySelector(".lb__prev").addEventListener("click", function (e) { e.stopPropagation(); show(idx - 1); });
+    lb.querySelector(".lb__next").addEventListener("click", function (e) { e.stopPropagation(); show(idx + 1); });
+    lb.addEventListener("click", function (e) { if (e.target === lb) close(); });
+    document.addEventListener("keydown", function (e) {
+      if (!lb.classList.contains("is-on")) return;
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowLeft") show(idx - 1);
+      if (e.key === "ArrowRight") show(idx + 1);
+    });
+    var sx = null;
+    lb.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener("touchend", function (e) {
+      if (sx === null) return;
+      var dx = e.changedTouches[0].clientX - sx; sx = null;
+      if (Math.abs(dx) > 50) show(dx < 0 ? idx + 1 : idx - 1);
+    }, { passive: true });
+  })();
 })();
