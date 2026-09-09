@@ -70,7 +70,7 @@ ul { list-style: none; }
 .lock__bg { position: absolute; inset: 0; }
 .lock__bg img {
   width: 100%; height: 100%;
-  object-fit: cover; object-position: center 55%;
+  object-fit: cover; object-position: center 50%;
   animation: heroZoom 14s ease-out both;
 }
 @keyframes heroZoom {
@@ -708,3 +708,73 @@ ul { list-style: none; }
   width: 3px; height: 3px; border-radius: 50%;
   background: var(--ink-soft);
 }
+
+/* ---------- 큰 숫자 4개 ---------- */
+.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.fact {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 20px 14px 18px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.fact b {
+  display: block;
+  font-family: var(--serif);
+  font-size: 40px; font-weight: 700; line-height: 1;
+  color: var(--pine);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+.fact b small { font-size: 16px; font-weight: 600; color: var(--flam); margin-left: 2px; }
+.fact b i { font-style: normal; font-size: 24px; color: var(--flam); margin: 0 2px; }
+.fact span { display: block; margin-top: 10px; font-size: 12.5px; line-height: 1.5; color: var(--ink-soft); }
+.fact__foot { margin-top: 14px; text-align: center; font-size: 13px; color: var(--ink-soft); }
+.fact__foot b { color: var(--pine); font-weight: 700; }
+
+/* ---------- 사진 타일 ---------- */
+.tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 0 6px; }
+.tile { position: relative; overflow: hidden; border-radius: 12px; background: var(--pine); margin: 0; }
+.tile--tall { grid-column: 1 / -1; }
+.tile img { width: 100%; height: 100%; aspect-ratio: 1 / 1.15; object-fit: cover; }
+.tile--tall img { aspect-ratio: 4 / 3.1; }
+.tile figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 70px 16px 16px;
+  background: linear-gradient(180deg, transparent, rgba(10, 30, 24, 0.62) 40%, rgba(10, 30, 24, 0.9));
+  color: #f8f5ee;
+}
+.tile__k {
+  display: inline-block;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em;
+  color: var(--flam-2);
+  border: 1px solid rgba(233, 143, 176, 0.6);
+  border-radius: 999px;
+  padding: 3px 9px;
+  margin-bottom: 8px;
+}
+.tile b { display: block; font-family: var(--serif); font-size: 16px; font-weight: 700; line-height: 1.38; }
+.tile--tall b { font-size: 20px; }
+.tile p { margin-top: 6px; font-size: 12px; line-height: 1.55; color: rgba(248, 245, 238, 0.85); }
+.tile:not(.tile--tall) p { display: none; }
+@media (min-width: 480px) { .tile:not(.tile--tall) p { display: block; } }
+
+/* ---------- 그린피 공식 ---------- */
+.formula { display: flex; align-items: stretch; gap: 8px; margin: 4px 0 22px; }
+.formula__box {
+  flex: 1;
+  border: 1px solid rgba(237, 241, 234, 0.35);
+  border-radius: 12px;
+  padding: 14px 10px;
+  text-align: center;
+}
+.formula__box small { display: block; font-size: 11px; color: rgba(237, 241, 234, 0.7); margin-bottom: 4px; }
+.formula__box b { font-family: var(--serif); font-size: 17px; font-weight: 700; color: #fff; }
+.formula__box--hl { background: var(--flam); border-color: var(--flam); }
+.formula__box--hl small { color: rgba(255, 255, 255, 0.85); }
+.formula__op { align-self: center; font-family: var(--serif); font-size: 22px; font-weight: 700; color: var(--flam-2); flex: none; }
+.why { border-top: 1px solid rgba(233, 143, 176, 0.5); }
+.why li { padding: 15px 2px; border-bottom: 1px solid rgba(237, 241, 234, 0.16); }
+.why b { display: block; font-size: 15.5px; font-weight: 700; color: #fff; }
+.why p { margin-top: 5px; font-size: 13px; line-height: 1.65; color: rgba(237, 241, 234, 0.82); }
