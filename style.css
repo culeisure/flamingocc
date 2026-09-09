@@ -1442,3 +1442,18 @@ body { background: var(--cream); }
 .product-cards .card__rows .x__opts li { padding: 5px 11px; }
 .product-cards .card__rows .x__ex li { margin-bottom: 6px; }
 @media (min-width: 520px) { .product-cards .card__rows li.row-x { min-height: 0; } }
+
+/* v16: 실시간 그린피 강조 · 절약 사다리 */
+.block__desc b { color: var(--flam); font-weight: 700; }
+.grid__note { margin-top: 8px; font-size: 12px; color: var(--ink-soft); }
+.save { text-align: left; padding: 18px 18px 14px; margin-top: 12px; }
+.save__k { text-align: center; font-size: 14px; }
+.save__k b { font-size: 20px; font-weight: 800; }
+.ladder { margin-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.35); }
+.ladder li { display: flex; align-items: baseline; justify-content: space-between; padding: 10px 2px; border-bottom: 1px solid rgba(255, 255, 255, 0.22); }
+.ladder li span { font-size: 13.5px; font-weight: 600; opacity: 0.92; }
+.ladder li b { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; }
+.ladder li b small { font-size: 12px; font-weight: 700; margin-left: 2px; }
+.ladder__last { border-bottom: 0 !important; }
+.ladder__last span { font-weight: 800 !important; opacity: 1 !important; }
+.ladder__last b { font-size: 30px !important; }
