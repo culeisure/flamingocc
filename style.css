@@ -1408,3 +1408,5 @@ body { background: var(--cream); }
 /* v12: 숨김 헤더가 히어로 하단에 비치지 않게 */
 .head:not(.is-stuck) { visibility: hidden; }
 .head.is-stuck { visibility: visible; }
+
+.who__tag { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: 0.06em; color: var(--flam); border: 1px solid var(--flam-2); border-radius: 4px; padding: 2px 7px; margin-bottom: 8px; }
