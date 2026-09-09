@@ -1267,3 +1267,38 @@ body { background: var(--cream); }
 
 /* Keep controls above the transformed lightbox photograph. */
 .lb__nav,.lb__x{z-index:1}
+
+/* =========================================================
+   v9: 히어로 보조 버튼 가독성 · 그린피 전후 비교
+   ========================================================= */
+.lock--c .btn--ghost { border: 1.5px solid rgba(255, 255, 255, 0.85); color: #fff; background: rgba(255, 255, 255, 0.10); }
+.lock--c .c__title { font-size: clamp(28px, 8.2vw, 38px); }
+.lock--c .c__pain { font-weight: 600; }
+.lock--c .c__pain br + * { font-weight: 800; }
+
+.cmp { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.cmp__col {
+  background: #fff;
+  border: 1px solid var(--gold);
+  border-radius: 14px;
+  padding: 18px 14px 16px;
+  text-align: center;
+}
+.cmp__k { font-size: 12.5px; font-weight: 700; letter-spacing: 0.04em; color: var(--ink-soft); }
+.cmp__was { margin-top: 8px; font-size: 15px; color: var(--ink-soft); text-decoration: line-through; text-decoration-color: rgba(86, 97, 105, 0.7); }
+.cmp__was::after { content: ""; display: block; width: 14px; height: 14px; margin: 6px auto 0; border-right: 2px solid var(--flam); border-bottom: 2px solid var(--flam); transform: rotate(45deg); }
+.cmp__now { margin-top: 2px; font-size: 32px; font-weight: 800; letter-spacing: -0.03em; color: var(--flam); line-height: 1.1; }
+.cmp__now small { font-size: 14px; font-weight: 700; margin-left: 1px; }
+.save {
+  margin-top: 10px;
+  background: var(--flam);
+  color: #fff;
+  border-radius: 14px;
+  padding: 18px 18px 16px;
+  text-align: center;
+}
+.save__k { font-size: 13.5px; font-weight: 600; opacity: 0.92; }
+.save__v { margin-top: 6px; font-size: 15px; }
+.save__v s { opacity: 0.75; margin-right: 8px; }
+.save__v b { font-size: 30px; font-weight: 800; letter-spacing: -0.03em; }
+.save__d { margin-top: 6px; font-size: 13px; font-weight: 600; }
