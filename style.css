@@ -981,6 +981,7 @@ ul { list-style: none; }
   --flam-3: #fde3ef;
   --sky: #cfe6f7;
   --gold: #c9a85a;
+  --gold-2: #dcc189;
   --line: #d8e4ec;
   --shadow: 0 10px 30px rgba(28, 34, 38, 0.08);
 }
@@ -1057,3 +1058,153 @@ body { background: var(--cream); }
 .progress { background: linear-gradient(90deg, var(--flam-2), var(--flam)); }
 .full__cap { background: linear-gradient(180deg, transparent, rgba(15, 30, 45, 0.78)); }
 .full__eyebrow { color: var(--flam-2); }
+
+/* =========================================================
+   v7 히어로: 배지 없이 타이포 중심. 명조 제목 + 금색 괘선 + 사실 한 줄
+   ========================================================= */
+.lock--p { justify-content: flex-end; }
+.lock--p .lock__bg img { object-position: center 42%; }
+.lock--p .lock__veil {
+  background:
+    linear-gradient(180deg, rgba(10, 22, 34, 0.28) 0%, rgba(10, 22, 34, 0.08) 22%, rgba(10, 22, 34, 0.30) 42%, rgba(9, 20, 30, 0.82) 62%, rgba(8, 16, 26, 0.96) 100%);
+}
+.lock--p .lock__top { position: absolute; top: 0; left: 0; right: 0; }
+.lock--p .lock__brand {
+  width: 96px; padding: 7px 10px;
+  background: rgba(255, 255, 255, 0.86);
+  border-radius: 6px;
+  backdrop-filter: blur(6px);
+}
+.lock--p .lock__body {
+  text-align: center;
+  padding: 0 28px 24px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+.p__eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold-2, #dcc189);
+  margin-bottom: 14px;
+  animation: fadeUp 0.9s 0.2s ease both;
+}
+.p__eyebrow i { width: 3px; height: 3px; border-radius: 50%; background: var(--gold-2, #dcc189); display: inline-block; }
+.p__title {
+  font-family: var(--serif);
+  font-size: clamp(40px, 11.5vw, 54px); font-weight: 600;
+  line-height: 1.12; letter-spacing: -0.02em;
+  color: #fff;
+  animation: fadeUp 0.9s 0.35s ease both;
+}
+.p__sub {
+  margin-top: 12px;
+  font-size: 13.5px; font-weight: 500; letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.86);
+  animation: fadeUp 0.9s 0.5s ease both;
+}
+.p__rule {
+  display: flex; align-items: center; gap: 12px;
+  margin: 26px 0 16px;
+  animation: fadeUp 0.9s 0.6s ease both;
+}
+.p__rule i { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(220, 193, 137, 0.8)); }
+.p__rule i:last-child { background: linear-gradient(90deg, rgba(220, 193, 137, 0.8), transparent); }
+.p__rule span { font-size: 11px; font-weight: 600; letter-spacing: 0.24em; color: var(--gold-2, #dcc189); }
+.p__hook {
+  font-family: var(--serif);
+  font-size: clamp(26px, 7.6vw, 34px); font-weight: 700;
+  line-height: 1.25; letter-spacing: -0.01em;
+  color: #fff;
+  animation: fadeUp 0.9s 0.7s ease both;
+}
+.p__hook em { font-style: normal; color: var(--gold-2, #dcc189); font-size: 1.18em; }
+.p__hook-sub {
+  margin-top: 8px;
+  font-size: 13px; color: rgba(255, 255, 255, 0.82);
+  animation: fadeUp 0.9s 0.8s ease both;
+}
+.p__facts {
+  display: flex; justify-content: center;
+  margin: 20px auto 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  animation: fadeUp 0.9s 0.9s ease both;
+}
+.p__facts li {
+  flex: 1;
+  padding: 12px 4px;
+  font-size: 16.5px; font-weight: 700; color: #fff;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.p__facts li + li { border-left: 1px solid rgba(255, 255, 255, 0.22); }
+.p__facts small {
+  display: block;
+  font-size: 10.5px; font-weight: 600; letter-spacing: 0.16em;
+  color: var(--gold-2, #dcc189);
+  margin-bottom: 3px;
+}
+.lock--p .lock__cta { max-width: 360px; margin: 0 auto; animation: fadeUp 0.9s 1.0s ease both; }
+.lock--p .btn--main { box-shadow: 0 6px 18px rgba(236, 47, 140, 0.28); }
+.lock--p .btn--ghost { border-color: rgba(255, 255, 255, 0.7); background: rgba(255, 255, 255, 0.08); }
+.lock--p .lock__hint { padding-top: 6px; }
+
+/* =========================================================
+   v8 히어로: 카시아 구조. 왼쪽 정렬, 다섯 줄, 흰 로고, 납작 버튼
+   ========================================================= */
+.lock--c { justify-content: flex-end; }
+.lock--c .lock__bg img { object-position: center 40%; }
+.lock--c .lock__veil {
+  background: linear-gradient(180deg, rgba(10, 18, 30, 0.30) 0%, rgba(10, 18, 30, 0.10) 25%, rgba(10, 18, 30, 0.45) 50%, rgba(10, 18, 30, 0.88) 78%, rgba(10, 18, 30, 0.96) 100%);
+}
+.lock--c .lock__top { position: absolute; top: 0; left: 0; right: 0; padding-top: max(22px, env(safe-area-inset-top)); }
+.lock--c .lock__brand { width: 92px; padding: 0; background: none; border-radius: 0; opacity: 0.95; }
+.lock--c .lock__body {
+  text-align: left;
+  padding: 0 24px 30px;
+  text-shadow: none;
+}
+.c__eyebrow {
+  font-size: 13.5px; font-weight: 600; letter-spacing: 0.02em;
+  color: var(--flam-2);
+  margin-bottom: 14px;
+  animation: fadeUp 0.9s 0.2s ease both;
+}
+.c__title {
+  font-family: var(--sans);
+  font-size: clamp(30px, 8.8vw, 40px); font-weight: 800;
+  line-height: 1.28; letter-spacing: -0.02em;
+  color: #fff;
+  margin-bottom: 18px;
+  animation: fadeUp 0.9s 0.35s ease both;
+}
+.c__pain {
+  font-size: clamp(17px, 4.8vw, 20px); font-weight: 700;
+  line-height: 1.5;
+  color: #fff;
+  margin-bottom: 8px;
+  animation: fadeUp 0.9s 0.5s ease both;
+}
+.c__sub {
+  font-size: 14px; font-weight: 400;
+  color: rgba(255, 255, 255, 0.78);
+  margin-bottom: 18px;
+  animation: fadeUp 0.9s 0.6s ease both;
+}
+.c__chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; animation: fadeUp 0.9s 0.7s ease both; }
+.c__chips li {
+  font-size: 12.5px; font-weight: 600;
+  padding: 7px 13px; border-radius: 999px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.13);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(4px);
+}
+.lock--c .lock__cta { display: flex; gap: 10px; max-width: none; margin: 0; animation: fadeUp 0.9s 0.85s ease both; }
+.lock--c .btn { flex: 1; border-radius: 12px; padding: 15px 12px; font-size: 15px; box-shadow: none; }
+.lock--c .btn--main { background: var(--flam); }
+.btn--dark { background: #151c26; color: #fff; }
+
+.lock--c .lock__body { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
+.bar__btn { border-radius: 12px; box-shadow: 0 4px 14px rgba(10, 18, 30, 0.22); }
+.bar__btn--call { background: var(--flam); }
+.bar__btn--sms { background: #151c26; }
