@@ -778,3 +778,113 @@ ul { list-style: none; }
 .why li { padding: 15px 2px; border-bottom: 1px solid rgba(237, 241, 234, 0.16); }
 .why b { display: block; font-size: 15.5px; font-weight: 700; color: #fff; }
 .why p { margin-top: 5px; font-size: 13px; line-height: 1.65; color: rgba(237, 241, 234, 0.82); }
+
+/* ---------- 히어로 v4: 가운데 정렬 + 50% 배지 ---------- */
+.lock--center .lock__body { text-align: center; padding-bottom: 20px; }
+.lock--center .lock__eyebrow { color: #fff; font-size: 14px; letter-spacing: 0.06em; margin-bottom: 18px; }
+.lock--center .lock__title { font-size: clamp(22px, 6.2vw, 30px); line-height: 1.4; margin-top: 18px; }
+.lock--center .lock__title em { color: var(--flam-2); }
+.lock__price {
+  margin-top: 12px;
+  font-size: 15.5px; font-weight: 700;
+  color: #fff;
+  animation: fadeUp 0.9s 0.75s ease both;
+}
+.lock__price span {
+  display: inline-block;
+  font-family: var(--serif); font-size: 12px; font-weight: 700;
+  color: var(--pine);
+  background: #fff;
+  border-radius: 6px;
+  padding: 1px 6px;
+  margin-right: 4px;
+  vertical-align: 2px;
+}
+.lock__price i { font-style: normal; color: rgba(255, 255, 255, 0.6); margin: 0 6px; }
+.lock--center .lock__cta { max-width: 340px; margin: 22px auto 0; }
+.badge {
+  width: 178px; height: 178px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 35%, #e8709b, var(--flam) 70%);
+  box-shadow: 0 14px 40px rgba(214, 75, 127, 0.45), inset 0 0 0 5px rgba(255, 255, 255, 0.18);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: #fff;
+  text-shadow: none;
+  animation: badgePop 0.9s 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+.badge__top { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; }
+.badge__num { font-family: var(--serif); font-size: 66px; font-weight: 700; line-height: 1; margin: 2px 0; }
+.badge__num small { font-size: 26px; margin-left: 2px; }
+.badge__bot { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; }
+@keyframes badgePop {
+  from { opacity: 0; transform: scale(0.6); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ---------- 그린피 표 ---------- */
+.fee {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.fee__head, .fee__row {
+  display: grid; grid-template-columns: 1.1fr 1.2fr 1.4fr;
+  align-items: center;
+}
+.fee__head {
+  padding: 10px 14px;
+  font-size: 11.5px; font-weight: 700; letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  background: #f1ede4;
+  text-align: center;
+}
+.fee__head .fee__hl { color: var(--flam); }
+.fee__row { padding: 14px; border-top: 1px solid var(--line); text-align: center; }
+.fee__k { text-align: left; font-size: 14px; font-weight: 700; color: var(--pine); }
+.fee__k small { display: block; font-size: 11px; font-weight: 500; color: var(--ink-soft); }
+.fee__was { font-size: 14px; color: var(--ink-soft); text-decoration: line-through; text-decoration-color: rgba(85, 98, 92, 0.6); }
+.fee__now { font-family: var(--serif); font-size: 24px; font-weight: 700; color: var(--flam); line-height: 1; }
+.fee__now small { font-family: var(--sans); font-size: 13px; font-weight: 600; margin-left: 1px; }
+.fee__row--sum { background: #fdf3f7; }
+.fee__row--sum .fee__now { font-size: 28px; }
+
+/* ---------- 상품 카드 태그 ---------- */
+.card__tag {
+  display: inline-block !important;
+  font-family: var(--serif) !important;
+  font-size: 12px !important; font-weight: 700 !important;
+  color: #fff !important;
+  background: var(--pine);
+  border-radius: 6px;
+  padding: 2px 8px !important;
+  margin: 0 8px 0 0 !important;
+  vertical-align: 3px;
+  letter-spacing: 0.04em !important;
+}
+.card--open .card__tag { background: var(--flam); }
+.card__rows b.hl { color: var(--flam); font-weight: 700; }
+
+/* ---------- 장점 6개 ---------- */
+.feats { display: grid; gap: 10px; margin-bottom: 22px; }
+.feat {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 10px;
+  box-shadow: var(--shadow);
+}
+.feat img { flex: none; width: 112px; height: 84px; object-fit: cover; border-radius: 10px; }
+.feat b { display: block; font-size: 15.5px; font-weight: 700; color: var(--pine); line-height: 1.35; }
+.feat p { margin-top: 4px; font-size: 12.5px; line-height: 1.55; color: var(--ink-soft); }
+@media (min-width: 480px) { .feats { grid-template-columns: 1fr 1fr; } .feat { flex-direction: column; align-items: stretch; } .feat img { width: 100%; height: 120px; } }
+
+/* ---------- 이런 분께 ---------- */
+.who { border-top: 1px solid rgba(233, 143, 176, 0.5); }
+.who li { padding: 15px 2px; border-bottom: 1px solid rgba(237, 241, 234, 0.16); }
+.who b { display: block; font-size: 15.5px; font-weight: 700; color: #fff; }
+.who p { margin-top: 5px; font-size: 13px; line-height: 1.65; color: rgba(237, 241, 234, 0.82); }
+.full--tall img { min-height: 320px; }
