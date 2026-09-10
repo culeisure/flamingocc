@@ -67,7 +67,7 @@
         var gate = lock ? lock.offsetHeight - 80 : 12;
         head.classList.toggle("is-stuck", sc > gate);
         var bar = document.querySelector(".bar");
-        if (bar) bar.classList.toggle("is-on", sc > gate);
+        if (bar) bar.classList.toggle("is-on", sc > (lock ? lock.offsetHeight * 0.45 : 12));
       }
     }
     window.addEventListener("scroll", onScroll, { passive: true });
