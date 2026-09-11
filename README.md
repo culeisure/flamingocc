@@ -36,3 +36,13 @@ flamingocc 공식 사이트(clublonge.com) 코스 · 클럽하우스 사진과 �
 - 그린피 예시 표: 이벤트가 주중 6만 · 주말 8만 기준, "예시" 각주
 - 사진: ref/base/*_sunny.png (사용자가 GPT로 맑은 날 생성) -> img/*.webp
 - 로컬 확인: `python _dev/serve.py 8770` 후 http://127.0.0.1:8770/ (자동 새로고침, _dev는 gitignore)
+
+## 자료받기 리드 폼 (2026-09-11)
+
+- 상담 카드 아래 "가입 안내문 받기" → 성함 · 연락처 · 이메일(선택) · 동의 · Turnstile → Apps Script → 시트 저장 + 담당자 문자 → PDF 다운로드
+- PDF: `docs/flamingo_info_q7v2.pdf` (원본 `../_asset/flamingo_Info.pdf`). 직접 URL 노출을 피하려고 파일명을 무작위로 두고 페이지에는 base64로 넣음
+- 설정: `_build/lead_config.json` (endpoint · sitekey · pdf). 값은 `index.html` head의 `window.LEAD_CFG`에 그대로 복사. endpoint가 비어 있으면 버튼이 숨겨짐
+- 서버: `_build/apps_script.gs`. 시트 "플라밍고 리드 DB"(yorang2@gmail.com Drive, https://docs.google.com/spreadsheets/d/1DYgyhrHFktc86Ganvs4HSYfOLunBEIjxNINzMEIt4Fs/edit)
+- 배포 절차: 시트 → 확장 프로그램 → Apps Script → apps_script.gs 붙여넣기 → 배포 → 새 배포 → 웹 앱(실행: 나, 액세스: 모든 사용자) → 웹 앱 URL을 lead_config.json과 index.html LEAD_CFG.endpoint에 → 커밋 · push
+- 문자: 뿌리오 키(PPURIO_ACCOUNT / API_KEY / FROM)를 apps_script.gs CONFIG에 넣고 "배포 관리 → 새 버전". 키가 없으면 관리자 이메일(yorang2@gmail.com)로 리드가 옴
+- Turnstile: culeisure.github.io 도메인 공용 sitekey/secret(카시아와 동일)

@@ -170,4 +170,63 @@
       if (Math.abs(dx) > 50) show(dx < 0 ? idx + 1 : idx - 1);
     }, { passive: true });
   })();
+
+  /* 7) 자료받기 리드 폼 */
+  (function () {
+    var cfg = window.LEAD_CFG || {};
+    var leadBtn = document.getElementById("leadBtn");
+    if (!leadBtn) return;
+    if (!cfg.endpoint) { leadBtn.style.display = "none"; return; }
+    var leadBox = document.getElementById("leadBox");
+    var leadForm = document.getElementById("leadForm");
+    function track(name, params) { try { if (typeof gtag === "function") gtag("event", name, params || {}); } catch (e) {} }
+    if (cfg.sitekey) {
+      var tw = document.getElementById("tsWidget");
+      tw.className = "cf-turnstile";
+      tw.setAttribute("data-sitekey", cfg.sitekey);
+      var tsc = document.createElement("script");
+      tsc.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+      tsc.async = true;
+      document.head.appendChild(tsc);
+    }
+    leadBtn.addEventListener("click", function () {
+      leadBox.hidden = false;
+      leadBtn.style.display = "none";
+      leadBox.scrollIntoView({ behavior: "smooth", block: "center" });
+      track("lead_open");
+    });
+    var privacyLink = document.getElementById("privacyLink");
+    if (privacyLink) privacyLink.addEventListener("click", function () { var d = document.getElementById("privacyD"); if (d) d.open = true; });
+    leadForm.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var btn = document.getElementById("leadSubmit");
+      var name = leadForm.lname.value.trim();
+      var phone = leadForm.lphone.value.replace(/[^0-9]/g, "");
+      var email = leadForm.lemail.value.trim();
+      if (!name) { alert("성함을 입력해 주세요."); return; }
+      if (!/^01[016789][0-9]{7,8}$/.test(phone)) { alert("휴대폰 번호를 확인해 주세요."); return; }
+      if (!leadForm.lagree.checked) { alert("개인정보 수집 · 이용에 동의해 주세요."); return; }
+      var token = "";
+      if (cfg.sitekey && window.turnstile) token = window.turnstile.getResponse() || "";
+      btn.disabled = true; btn.textContent = "전송 중...";
+      fetch(cfg.endpoint, {
+        method: "POST",
+        body: JSON.stringify({ sp: cfg.sp || "", name: name, phone: phone, email: email, token: token, hp: leadForm.company ? leadForm.company.value : "" })
+      }).then(function (r) { return r.json(); }).then(function (res) {
+        if (res.ok) {
+          leadForm.hidden = true;
+          var done = document.getElementById("leadDone");
+          done.hidden = false;
+          document.getElementById("leadPdf").href = atob(cfg.pdf);
+          track("lead_submit");
+        } else {
+          alert(res.msg || "전송에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+          btn.disabled = false; btn.textContent = "제출하고 안내문 받기";
+        }
+      }).catch(function () {
+        alert("전송에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+        btn.disabled = false; btn.textContent = "제출하고 안내문 받기";
+      });
+    });
+  })();
 })();

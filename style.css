@@ -1465,3 +1465,33 @@ body { background: var(--cream); }
 /* v18: 앵커 버튼 · 캡션 ※ · 고정바 조기 표시 */
 .e__cap em { display: block; font-family: var(--sans); font-style: normal; font-size: 11.5px; font-weight: 600; line-height: 1.5; color: #ffd3e4; margin-top: 8px; }
 .anchor { scroll-margin-top: 64px; }
+
+/* ---------- 자료받기 리드 폼 ---------- */
+.btn--lead { width: 100%; margin-top: 10px; background: #fff; border: 1.5px solid var(--line); color: var(--ink); }
+.lead { margin-top: 14px; background: #fff; border: 1px solid var(--gold); border-radius: 14px; padding: 22px 20px; box-shadow: var(--shadow); }
+.lead__t { font-size: 17px; font-weight: 800; color: var(--ink); }
+.lead__s { font-size: 13px; color: var(--ink-soft); margin: 4px 0 14px; }
+.lead form { display: grid; gap: 12px; }
+.lead label { display: block; font-size: 13px; font-weight: 700; color: var(--ink); }
+.lead label small { font-weight: 500; color: var(--ink-soft); margin-left: 4px; }
+.lead input[type="text"], .lead input[type="tel"], .lead input[type="email"] {
+  width: 100%; margin-top: 5px; padding: 12px 13px;
+  border: 1px solid var(--line); border-radius: 10px;
+  font-size: 16px; font-family: inherit; background: #f7fafc; color: var(--ink);
+}
+.lead input:focus { outline: 2px solid var(--flam-2); border-color: var(--flam); }
+.hp-field { position: absolute !important; left: -9999px !important; height: 1px; opacity: 0; }
+.lead__agree { font-weight: 500 !important; font-size: 12.5px !important; color: var(--ink-soft) !important; }
+.lead__agree a { color: var(--flam); text-decoration: underline; text-underline-offset: 2px; }
+.lead__done { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 12px; text-align: center; }
+#leadDone .btn, #leadSubmit { width: 100%; }
+#leadSubmit:disabled { opacity: 0.6; }
+
+/* ---------- 개인정보처리방침 토글 ---------- */
+.privacy { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 12px; text-align: left; }
+.privacy summary { list-style: none; cursor: pointer; font-size: 12px; font-weight: 700; color: var(--ink-soft); display: flex; justify-content: space-between; }
+.privacy summary::-webkit-details-marker { display: none; }
+.privacy summary::after { content: "+"; }
+.privacy[open] summary::after { content: "\2212"; }
+.privacy__body { margin-top: 8px; font-size: 10.5px; line-height: 1.7; color: var(--ink-soft); }
+.privacy__body p + p { margin-top: 3px; }
