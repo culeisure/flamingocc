@@ -1,18 +1,19 @@
 /**
  * 플라밍고CC 자료받기 리드 수집 서버 (Google Apps Script)
- * 구글시트에 리드 저장 + 담당 영업사원에게 뿌리오 문자 발송
+ * 구글시트에 리드 저장 + 담당 영업사원에게 솔라피(SOLAPI) 문자 발송
  *
  * 사용법: "플라밍고 리드 DB" 구글시트 → 확장 프로그램 → Apps Script → 이 코드 전체 붙여넣기
  *         → 배포 → 새 배포 → 웹 앱 (실행: 나 / 액세스: 모든 사용자) → 웹 앱 URL을 _build/lead_config.json 의 endpoint 에
+ * 문자: 솔라피 키 3개(SOLAPI_API_KEY / SECRET / FROM)를 CONFIG에 넣고 배포 관리 → 새 버전
  * 카시아 apps_script.gs 와 같은 구조. 시트 이름과 문자 머리말만 다르다.
  */
 
 // ===== 설정 (키 발급되면 여기만 채우면 됨) =====
 var CONFIG = {
   SITE: '플라밍고',
-  PPURIO_ACCOUNT: '',        // 뿌리오 계정 ID
-  PPURIO_API_KEY: '',        // 뿌리오 API 연동키
-  PPURIO_FROM: '',           // 등록된 발신번호 (예: 0244498221)
+  SOLAPI_API_KEY: '',        // 솔라피 API Key (console.solapi.com → API Key 관리)
+  SOLAPI_API_SECRET: '',     // 솔라피 API Secret
+  SOLAPI_FROM: '',           // 솔라피에 등록·인증된 발신번호 (숫자만, 예: 0244498221)
   TURNSTILE_SECRET: '0x4AAAAAAEmqDucfcWhxZqJZ-zR_k29axlY',      // Cloudflare Turnstile 시크릿 (culeisure.github.io 공용)
   ADMIN_EMAIL: 'yorang2@gmail.com',  // 문자 실패 시 알림 받을 이메일
   ALERT_PHONE: '',           // 긴급 알림 받을 번호 (이요한)
@@ -83,7 +84,7 @@ function doPost(e) {
       var sent = sendSms_(sp.phone, msg);
       if (!sent && CONFIG.ADMIN_EMAIL) {
         MailApp.sendEmail(CONFIG.ADMIN_EMAIL, '[' + CONFIG.SITE + '] 자료 다운 리드 - ' + sp.name,
-          '리드: ' + name + ' / ' + fmtPhone_(phone) + ' / ' + email + '\n담당: ' + sp.name + '\n시트에 저장됨. 뿌리오 키가 없으면 문자는 발송되지 않습니다.');
+          '리드: ' + name + ' / ' + fmtPhone_(phone) + ' / ' + email + '\n담당: ' + sp.name + '\n시트에 저장됨. 솔라피 키가 없으면 문자는 발송되지 않습니다.');
       }
     }
 
@@ -93,7 +94,7 @@ function doPost(e) {
   }
 }
 
-// ===== 관리자 긴급 알림 (뿌리오 연결 전에는 이메일로) =====
+// ===== 관리자 긴급 알림 (솔라피 연결 전에는 이메일로) =====
 function notifyAdmin_(text) {
   var viaSms = CONFIG.ALERT_PHONE && sendSms_(CONFIG.ALERT_PHONE.replace(/[^0-9]/g, ''), text);
   if (!viaSms && CONFIG.ADMIN_EMAIL) {
@@ -101,31 +102,23 @@ function notifyAdmin_(text) {
   }
 }
 
-// ===== 뿌리오 문자 발송 =====
+// ===== 솔라피 문자 발송 =====
+// 인증: HMAC-SHA256. signature = HMAC_SHA256(date + salt, apiSecret) 를 16진수로
 function sendSms_(to, text) {
-  if (!CONFIG.PPURIO_ACCOUNT || !CONFIG.PPURIO_API_KEY || !CONFIG.PPURIO_FROM) return false;
+  if (!CONFIG.SOLAPI_API_KEY || !CONFIG.SOLAPI_API_SECRET || !CONFIG.SOLAPI_FROM) return false;
   try {
-    var tokenRes = UrlFetchApp.fetch('https://message.ppurio.com/v1/token', {
-      method: 'post',
-      headers: { Authorization: 'Basic ' + Utilities.base64Encode(CONFIG.PPURIO_ACCOUNT + ':' + CONFIG.PPURIO_API_KEY) },
-      muteHttpExceptions: true
-    });
-    var token = JSON.parse(tokenRes.getContentText()).token;
-    if (!token) return false;
-
-    var res = UrlFetchApp.fetch('https://message.ppurio.com/v1/message', {
+    var date = new Date().toISOString();
+    var salt = Utilities.getUuid().replace(/-/g, '');
+    var sigBytes = Utilities.computeHmacSha256Signature(date + salt, CONFIG.SOLAPI_API_SECRET);
+    var signature = sigBytes.map(function (b) { return ('0' + (b & 0xff).toString(16)).slice(-2); }).join('');
+    var res = UrlFetchApp.fetch('https://api.solapi.com/messages/v4/send', {
       method: 'post',
       contentType: 'application/json',
-      headers: { Authorization: 'Bearer ' + token },
+      headers: {
+        Authorization: 'HMAC-SHA256 apiKey=' + CONFIG.SOLAPI_API_KEY + ', date=' + date + ', salt=' + salt + ', signature=' + signature
+      },
       payload: JSON.stringify({
-        account: CONFIG.PPURIO_ACCOUNT,
-        messageType: 'SMS',
-        from: CONFIG.PPURIO_FROM,
-        content: text,
-        duplicateFlag: 'N',
-        targetCount: 1,
-        targets: [{ to: to }],
-        refKey: 'flamingo_' + Date.now()
+        message: { to: to, from: CONFIG.SOLAPI_FROM.replace(/[^0-9]/g, ''), text: text }
       }),
       muteHttpExceptions: true
     });
